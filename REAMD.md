@@ -1,0 +1,1 @@
+Less cuts problem in js, graphic with pixijs (alt. svg with D3js).
