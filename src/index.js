@@ -1,3 +1,29 @@
+const express = require('express');
+const app = express();
+require('dotenv').config();
+
+//middlewares
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+//for test purpose
+const PIXI = require('pixi.js')
+
+//routes
+app.use('/api/cutwood/',require('./routes/app'))
+
+
+
+//starting the server
+app.listen(process.env.PORT || 3000, (err) => {
+  if( err ) throw new Error(err);
+
+  console.log(`Server on ${process.env.PORT}`);
+});
+
+
+
+
 function cutWood2(rectangles, stockSize, grainDirection, cutSize) {
   const bins = [{ x: 0, y: 0, width: stockSize.width, height: stockSize.height}];
   const nodePool = [{ index: 0, x: 0, y: 0, width: stockSize.width, height: stockSize.height }];
@@ -42,10 +68,6 @@ function cutWood2(rectangles, stockSize, grainDirection, cutSize) {
 }
 
 
-
-
-
-
 function crearCubo(x, y, width, height){
   graphics.lineStyle(2, 0X266A38, 1);
   graphics.beginFill(0xFFFFFF);
@@ -55,48 +77,49 @@ function crearCubo(x, y, width, height){
 
 
 
+// function viewCuts() {
+//   const pixiapp = new PIXI.Application({ 
+//     width: 1400,
+//     height: 750,
+//     background: 0x000000,
+//     antialias: true}
+//   );
+//   document.body.appendChild(pixiapp.view);
+  
+//   const graphics = new PIXI.Graphics();
+  
+//   //rects input
+//   const rectangles = [
+//     { width: 700, height: 750 },
+//     { width: 300, height: 100 },
+//     { width: 40, height: 60 },
+//     { width: 15, height: 25 },
+//     { width: 25, height: 35 },
+//     { width: 35, height: 55 },
+//   ];
+//   const stockSize = {width: 1400, height: 750};
+//   const grainDirection = 'horizontal';
+//   const cutSize = 15;
+//   // let result = cutWood2(rectangles, stockSize, grainDirection);
+//   let result = cutWood2(rectangles, stockSize, grainDirection, cutSize);
+//   console.log(result)
+  
+  
+//   //Graphic Rectangle
+//   graphics.beginFill(0xFFFFFF);
+//   graphics.lineStyle(8, 0xDE3249, 1);
+//   graphics.drawRect(0, 0, stockSize.width, stockSize.height);
+//   graphics.endFill();
+//   for (let i = 0; i < result.length; i++) {
+//     crearCubo(result[i].x, result[i].y, result[i].width, result[i].height);
+//   }
+  
+  
+//   pixiapp.stage.addChild(graphics);
+// }
 
 
-const app = new PIXI.Application({ 
-  width: 1400,
-  height: 750,
-  background: 0x000000,
-  antialias: true}
-);
-document.body.appendChild(app.view);
 
-const graphics = new PIXI.Graphics();
-
-//rects input
-const rectangles = [
-  { width: 700, height: 750 },
-  { width: 300, height: 100 },
-  { width: 40, height: 60 },
-  { width: 15, height: 25 },
-  { width: 25, height: 35 },
-  { width: 35, height: 55 },
-];
-const stockSize = {width: 1400, height: 750};
-const grainDirection = 'horizontal';
-const cutSize = 15;
-// let result = cutWood2(rectangles, stockSize, grainDirection);
-let result = cutWood2(rectangles, stockSize, grainDirection, cutSize);
-console.log(result)
-
-
-//Graphic Rectangle
-graphics.beginFill(0xFFFFFF);
-graphics.lineStyle(8, 0xDE3249, 1);
-graphics.drawRect(0, 0, stockSize.width, stockSize.height);
-graphics.endFill();
-for (let i = 0; i < result.length; i++) {
-  crearCubo(result[i].x, result[i].y, result[i].width, result[i].height);
-}
-
-
-app.stage.addChild(graphics);
-
-// // require("index.js");
 
 
 // function cutStock(rectangles, stockSize) {
