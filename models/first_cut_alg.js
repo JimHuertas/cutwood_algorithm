@@ -115,7 +115,7 @@ function cutWood2(rectangles, stockSize, grainDirection) {
         }
       }
   
-      // If rectangle was not added, create new bin for it
+      // If rectangle was not added then create new bin for it
       if (!added) {
         bins.push({ x: 0, y: 0, width: rectangle.width, height: rectangle.height });
       }
@@ -140,10 +140,6 @@ function example() {
 
     result = cutWood2(rectangles, stockSize, grainDirection);
     console.log(result);
-    
-    for(const i in result){
-
-    }
 
 
     document.getElementById("result").innerHTML = result[0].x;
