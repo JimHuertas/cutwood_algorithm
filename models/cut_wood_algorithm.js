@@ -1,10 +1,7 @@
 function cutWood2(rectangles, stockSize, grainDirection, cutSize) {
+    // Initialize an empty bin to hold cut pieces
     const bins = [{ x: 0, y: 0, width: stockSize.width, height: stockSize.height}];
     const nodePool = [{ index: 0, x: 0, y: 0, width: stockSize.width, height: stockSize.height }];
-
-    // console.log('Primer Bin: ', bins);
-    // console.log('Primer nodePool: ', nodePool);
-
 
     let insertedRectangles = 0;
     while (insertedRectangles < rectangles.length && nodePool.length > 0) {
